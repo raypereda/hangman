@@ -1,0 +1,18 @@
+  1. secret word = COMAKER                        score =  8
+  2. secret word = CUMULATE                       score =  7
+  3. secret word = ERUPTIVE                       score =  6
+  4. secret word = FACTUAL                        score =  5
+  5. secret word = MONADISM                       score =  5
+  6. secret word = MUS                            score = 25
+  7. secret word = NAGGING                        score =  5
+  8. secret word = OSES                           score =  2
+  9. secret word = REMEMBERED                     score =  3
+ 10. secret word = SPODUMENES                     score =  4
+ 11. secret word = STEREOISOMERS                  score =  2
+ 12. secret word = TOXICS                         score =  9
+ 13. secret word = TRICHROMATS                    score =  4
+ 14. secret word = TRIOSE                         score =  7
+ 15. secret word = UNIFORMED                      score =  6
+
+total score =    98
+scoring time (sec) = 3.571

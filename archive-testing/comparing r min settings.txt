@@ -1,0 +1,19 @@
+		r = Math.min(r, guessableLetters.size());
+		  1. secret word = TYPHUSES                       score =  7
+		  2. secret word = HYPERPLOID                     score =  6
+		  3. secret word = CROSSLINGUISTICALLY            score =  1
+		  4. secret word = STABILE                        score =  5
+		  5. secret word = ISOTOPIES                      score =  5
+		  6. secret word = URUSHIOL                       score =  5
+		  7. secret word = EXORCIZING                     score =  5
+		  8. secret word = APOLOGIZERS                    score =  4
+		  9. secret word = THRAWN                         score =  6
+		 10. secret word = TAPENADES                      score =  4
+		 11. secret word = SPARKLIER                      score =  4
+		 12. secret word = TAWDRIER                       score =  7
+		 13. secret word = NOTABLENESS                    score =  5
+		 14. secret word = SLUTS                          score = 25
+
+		total score =    89
+		scoring time (sec) = 328.331
+		

@@ -1,0 +1,35 @@
+ComboAndEntropy [combo=[E, I], entropy=8.888402666478077]
+ComboAndEntropy [combo=[I, S], entropy=6.645041391465278]
+ComboAndEntropy [combo=[I, O], entropy=5.519882129068175]
+ComboAndEntropy [combo=[C, L], entropy=2.321928094887362]
+ComboAndEntropy [combo=[A, G], entropy=0.0]
+  1. secret word = APOLOGIZERS                    score =  4
+ComboAndEntropy [combo=[E, S], entropy=7.346226646668512]
+ComboAndEntropy [combo=[R, T], entropy=5.1417308516354385]
+ComboAndEntropy [combo=[S, T], entropy=3.4709297566398263]
+ComboAndEntropy [combo=[L, S], entropy=3.255541314938875]
+ComboAndEntropy [combo=[A, I], entropy=1.9219280948873623]
+ComboAndEntropy [combo=[H, N], entropy=0.0]
+  2. secret word = INSPHERES                      score =  5
+ComboAndEntropy [combo=[E, S], entropy=7.346226646668512]
+ComboAndEntropy [combo=[R, S], entropy=5.42053581833875]
+ComboAndEntropy [combo=[A, I], entropy=1.584962500721156]
+ComboAndEntropy [combo=[I, O], entropy=1.0]
+  3. secret word = REPROVERS                      score =  3
+ComboAndEntropy [combo=[E, S], entropy=7.346226646668512]
+ComboAndEntropy [combo=[R, S], entropy=5.913003244808756]
+ComboAndEntropy [combo=[I, T], entropy=3.3187980986983048]
+ComboAndEntropy [combo=[I, N], entropy=2.703374613271625]
+ComboAndEntropy [combo=[A, N], entropy=2.6755700374451465]
+ComboAndEntropy [combo=[M, R], entropy=2.6115107774877755]
+ComboAndEntropy [combo=[A, F], entropy=1.5]
+ComboAndEntropy [combo=[C, F], entropy=1.0]
+ComboAndEntropy [combo=[C, U], entropy=0.0]
+  4. secret word = SCURVIEST                      score =  8
+ComboAndEntropy [combo=[E, I], entropy=10.162997206361087]
+ComboAndEntropy [combo=[C, I], entropy=4.058813890331201]
+ComboAndEntropy [combo=[C, F], entropy=0.0]
+  5. secret word = FELICITOUSNESS                 score =  2
+
+total score =    22
+scoring time (sec) = 12.938

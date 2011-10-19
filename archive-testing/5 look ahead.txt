@@ -1,0 +1,88 @@
+5 look ahead, reducing 5 by finding char with max entropy
+
+ 1. secret word = APOLOGIZERS                    score =  3
+ 2. secret word = INSPHERES                      score =  5
+ 3. secret word = REPROVERS                      score =  3
+ 4. secret word = SCURVIEST                      score =  8
+ 5. secret word = FELICITOUSNESS                 score =  2
+ 6. secret word = PEDOLOGIC                      score =  6
+ 7. secret word = THRAWN                         score =  7
+ 8. secret word = ACKEES                         score =  4
+ 9. secret word = TAPENADES                      score =  4
+10. secret word = SPARKLIER                      score =  4
+11. secret word = RECONNECTIONS                  score =  2
+12. secret word = DECADAL                        score =  6
+13. secret word = TAWDRIER                       score =  6
+14. secret word = NOTABLENESS                    score =  5
+15. secret word = STABILE                        score =  6
+16. secret word = SLUTS                          score = 25
+17. secret word = DROUTH                         score =  6
+18. secret word = PHOTOPHOBIC                    score =  5
+19. secret word = GLYCOLIPIDS                    score =  5
+20. secret word = SEMIPERMANENT                  score =  2
+21. secret word = PREACH                         score =  7
+22. secret word = REBAR                          score =  3
+23. secret word = COCINERAS                      score =  4
+24. secret word = SUBURBANIZING                  score =  4
+25. secret word = DOXY                           score = 25
+26. secret word = STAUROLITIC                    score =  4
+27. secret word = NOUS                           score = 25
+28. secret word = COHERING                       score =  7
+29. secret word = CHEFDOM                        score =  6
+30. secret word = COITIONAL                      score =  4
+31. secret word = UNHANDICAPPED                  score =  3
+32. secret word = RESIDUES                       score =  6
+33. secret word = CALICLE                        score =  3
+34. secret word = MISJUDGMENT                    score =  4
+35. secret word = ISOTOPIES                      score =  5
+36. secret word = CREAKINESS                     score =  6
+37. secret word = SCOPING                        score =  6
+38. secret word = REFUND                         score =  9
+39. secret word = CROSSLINGUISTICALLY            score =  1
+40. secret word = AURORAE                        score =  4
+41. secret word = PALEOECOLOGIST                 score =  2
+42. secret word = CROSSBILLS                     score =  4
+43. secret word = REAPABLE                       score =  7
+44. secret word = THWACKERS                      score =  6
+45. secret word = AVERAGENESSES                  score =  2
+46. secret word = PACESETTERS                    score =  3
+47. secret word = BECKED                         score = 25
+48. secret word = IMIDES                         score =  5
+49. secret word = HONCHO                         score =  4
+50. secret word = LIBRETTI                       score =  5
+51. secret word = PASSIONATENESSES               score =  2
+52. secret word = GREMIALS                       score =  5
+53. secret word = CELESTA                        score =  3
+54. secret word = SCAPING                        score =  6
+55. secret word = PLASMALEMMAS                   score =  4
+56. secret word = SABERMETRICIANS                score =  3
+57. secret word = NEEDLEFISHES                   score =  2
+58. secret word = NAVIGATE                       score =  6
+59. secret word = UNCONNECTED                    score =  5
+60. secret word = PYROMETALLURGY                 score =  4
+61. secret word = EMPHASISING                    score =  4
+62. secret word = POETIZER                       score =  5
+63. secret word = LATINIZES                      score =  5
+64. secret word = SUBSITE                        score =  7
+65. secret word = SNAKEBITES                     score =  5
+66. secret word = HYPERPLOID                     score =  5
+67. secret word = HYPERTENSIONS                  score =  2
+68. secret word = SOUTHERLIES                    score =  4
+69. secret word = EXORCIZING                     score =  6
+70. secret word = TYPHUSES                       score =  7
+71. secret word = MARABOU                        score =  7
+72. secret word = MOP                            score = 25
+73. secret word = SOLUBLES                       score =  5
+74. secret word = TRAINEESHIP                    score =  2
+75. secret word = STRIPELESS                     score =  4
+76. secret word = NONRESIDENCIES                 score =  2
+77. secret word = IMMIGRATE                      score =  4
+78. secret word = CONTINUE                       score =  5
+79. secret word = TOWPATHS                       score =  8
+80. secret word = JACAMARS                       score =  4
+81. secret word = FASCICULATED                   score =  3
+82. secret word = ABOMASA                        score =  2
+83. secret word = WEARILESS                      score =  4
+84. secret word = MUCID                          score =  8
+85. secret word = URUSHIOL                       score =  6
+86. secret word = CUSTOMHOUSES                   score =  6

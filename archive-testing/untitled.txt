@@ -1,0 +1,106 @@
+int r = 4;
+r = Math.min(r, guessableLetters.size() - 1);
+r = Math.max(r, 1);
+(1-look, 4-look, delta, cummulative-delta)
+ 1. secret word = APOLOGIZERS                 3     score =  4  3  -1 1
+ 2. secret word = INSPHERES                   5     score =  5  5
+ 3. secret word = REPROVERS                   3     score =  3  3
+ 4. secret word = SCURVIEST                   8     score =  8  8
+ 5. secret word = FELICITOUSNESS              2     score =  2  2
+ 6. secret word = PEDOLOGIC                   6     score =  6  6
+ 7. secret word = THRAWN                      7     score =  6  7  +1 0
+ 8. secret word = ACKEES                      4     score =  4  4  
+ 9. secret word = TAPENADES                   4     score =  5  4  -1 -1
+10. secret word = SPARKLIER                   4     score =  5  4  -1 -2
+11. secret word = RECONNECTIONS               2     score =  2  2
+12. secret word = DECADAL                     6     score =  6  6
+13. secret word = TAWDRIER                    6     score =  5  7  +2 0
+14. secret word = NOTABLENESS                 5     score =  5  4  -1 -1
+15. secret word = STABILE                     6     score =  5  7  +2 +1
+16. secret word = SLUTS                      25     score = 25 25
+17. secret word = DROUTH                      6     score =  6  6
+18. secret word = PHOTOPHOBIC                 5     score =  5  5
+19. secret word = GLYCOLIPIDS                 5     score =  5  5
+20. secret word = SEMIPERMANENT               2     score =  2  2
+21. secret word = PREACH                      7     score =  7  7
+22. secret word = REBAR                       3     score =  3  3
+23. secret word = COCINERAS                   4     score =  4  3 -1 0
+24. secret word = SUBURBANIZING               4     score =  5  4 -1 -1
+25. secret word = DOXY                       25     score = 25 25
+26. secret word = STAUROLITIC                 4     score =  4  4
+27. secret word = NOUS                       25     score = 25 25
+28. secret word = COHERING                    7     score =  9 6  -3 -4
+29. secret word = CHEFDOM                     6     score =  6 6
+30. secret word = COITIONAL                   4     score =  4 4
+31. secret word = UNHANDICAPPED               3     score =  3 3
+32. secret word = RESIDUES                    6     score =  6 6
+33. secret word = CALICLE                     3     score =  3 3
+34. secret word = MISJUDGMENT                 4     score =  4 4
+35. secret word = ISOTOPIES                   5     score =  5 7 +2 -2
+36. secret word = CREAKINESS                  6     score =  5 5
+37. secret word = SCOPING                     6     score =  6 6
+38. secret word = REFUND                      9     score =  9 9
+39. secret word = CROSSLINGUISTICALLY         1     score =  2 1 -1 -3
+40. secret word = AURORAE                     4     score =  4 5 +1 -2
+41. secret word = PALEOECOLOGIST              2     score =  2 2
+42. secret word = CROSSBILLS                  4     score =  4 5 +1 -1
+43. secret word = REAPABLE                    7     score =  6 7 +1  0
+44. secret word = THWACKERS                   6     score =  7 7
+45. secret word = AVERAGENESSES               2     score =  2 2
+46. secret word = PACESETTERS                 3     score =  3 3
+47. secret word = BECKED                     25     score = 25 25
+48. secret word = IMIDES                      5     score =  5  5
+49. secret word = HONCHO                      4     score =  4  4
+50. secret word = LIBRETTI                    5     score =  5  5
+51. secret word = PASSIONATENESSES            2     score =  3  2 -1 -1
+52. secret word = GREMIALS                    5     score =  5  5
+53. secret word = CELESTA                     3     score =  3  3
+54. secret word = SCAPING                     6  score =  6  6
+55. secret word = PLASMALEMMAS                4  score =  4  4
+56. secret word = SABERMETRICIANS             3  score =  2  3
+57. secret word = NEEDLEFISHES                2  score =  2  2
+58. secret word = NAVIGATE                    6  score =  6  6
+59. secret word = UNCONNECTED                 5  score =  5  5
+60. secret word = PYROMETALLURGY              4  score =  4  4
+61. secret word = EMPHASISING                 4  score =  4  4
+62. secret word = POETIZER                    5  score =  4  4
+63. secret word = LATINIZES                   5  score =  6  6
+64. secret word = SUBSITE                     7  score =  8  7 -1 -2
+65. secret word = SNAKEBITES                  5  score =  5  5
+66. secret word = HYPERPLOID                  5  score =  4  6 +2 0
+67. secret word = HYPERTENSIONS               2  score =  2  2
+68. secret word = SOUTHERLIES                 4  score =  4  4
+69. secret word = EXORCIZING                  6  score =  5  6 +1  1
+70. secret word = TYPHUSES                    7  score =  7 25 +18 19
+71. secret word = MARABOU                     7  score =  7  7
+72. secret word = MOP                        25  score = 25 25
+73. secret word = SOLUBLES                    5  score =  5  5
+74. secret word = TRAINEESHIP                 2  score =  2  2
+75. secret word = STRIPELESS                  4  score =  4  4
+76. secret word = NONRESIDENCIES              2  score =  2  2
+77. secret word = IMMIGRATE                   4  score =  4  4
+78. secret word = CONTINUE                    5  score =  5  5
+79. secret word = TOWPATHS                    8  score =  7  7
+80. secret word = JACAMARS                    4  score =  4  4
+81. secret word = FASCICULATED                3  score =  4  3 -1 
+82. secret word = ABOMASA                     2  score =  2  2
+83. secret word = WEARILESS                   4  score =  4  4
+84. secret word = MUCID                       8  score =  8  8
+85. secret word = URUSHIOL                    6  score =  5  7 +2
+86. secret word = CUSTOMHOUSES                6  score =  4
+87. secret word = ATOMIC                         score =  5
+88. secret word = INTERCHANGEABLENESSES          score =  1
+89. secret word = MICROFILMABLE                  score =  3
+90. secret word = DAIRYMAN                       score =  4
+91. secret word = PHOSPHOROLYSIS                 score =  3
+92. secret word = MEANDER                        score =  4
+93. secret word = RAUCITY                        score =  8
+94. secret word = AMBERINAS                      score =  3
+95. secret word = IMPOROUS                       score =  5
+96. secret word = NOVELTY                        score =  6
+97. secret word = FLUOR                          score =  6
+98. secret word = CRANNY                         score =  6
+99. secret word = SLOVEN                         score =  8
+00. secret word = EPONYMIES                      score =  4
+
+

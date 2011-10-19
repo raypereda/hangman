@@ -1,0 +1,1254 @@
+JAVA PROFILE 1.0.1, created Thu Sep  8 16:03:20 2011
+
+Header for -agentlib:hprof (or -Xrunhprof) ASCII Output (JDK 5.0 JVMTI based)
+
+%W% %E%
+
+ Copyright (c) 2006 Sun Microsystems, Inc. All  Rights Reserved.
+
+WARNING!  This file format is under development, and is subject to
+change without notice.
+
+This file contains the following types of records:
+
+THREAD START
+THREAD END      mark the lifetime of Java threads
+
+TRACE           represents a Java stack trace.  Each trace consists
+                of a series of stack frames.  Other records refer to
+                TRACEs to identify (1) where object allocations have
+                taken place, (2) the frames in which GC roots were
+                found, and (3) frequently executed methods.
+
+HEAP DUMP       is a complete snapshot of all live objects in the Java
+                heap.  Following distinctions are made:
+
+                ROOT    root set as determined by GC
+                CLS     classes 
+                OBJ     instances
+                ARR     arrays
+
+SITES           is a sorted list of allocation sites.  This identifies
+                the most heavily allocated object types, and the TRACE
+                at which those allocations occurred.
+
+CPU SAMPLES     is a statistical profile of program execution.  The VM
+                periodically samples all running threads, and assigns
+                a quantum to active TRACEs in those threads.  Entries
+                in this record are TRACEs ranked by the percentage of
+                total quanta they consumed; top-ranked TRACEs are
+                typically hot spots in the program.
+
+CPU TIME        is a profile of program execution obtained by measuring
+                the time spent in individual methods (excluding the time
+                spent in callees), as well as by counting the number of
+                times each method is called. Entries in this record are
+                TRACEs ranked by the percentage of total CPU time. The
+                "count" field indicates the number of times each TRACE 
+                is invoked.
+
+MONITOR TIME    is a profile of monitor contention obtained by measuring
+                the time spent by a thread waiting to enter a monitor.
+                Entries in this record are TRACEs ranked by the percentage
+                of total monitor contention time and a brief description
+                of the monitor.  The "count" field indicates the number of 
+                times the monitor was contended at that TRACE.
+
+MONITOR DUMP    is a complete snapshot of all the monitors and threads in 
+                the System.
+
+HEAP DUMP, SITES, CPU SAMPLES|TIME and MONITOR DUMP|TIME records are generated 
+at program exit.  They can also be obtained during program execution by typing 
+Ctrl-\ (on Solaris) or by typing Ctrl-Break (on Win32).
+
+--------
+
+THREAD START (obj=50000150, id = 200002, name="HPROF gc_finish watcher", group="system")
+THREAD START (obj=50000151, id = 200001, name="main", group="main")
+THREAD START (obj=500002cd, id = 200003, name="Thread-1", group="main")
+THREAD END (id = 200003)
+THREAD END (id = 200001)
+THREAD START (obj=50000303, id = 200006, name="DestroyJavaVM", group="main")
+THREAD END (id = 200006)
+TRACE 308011:
+	java.lang.Object.wait(Object.java:Unknown line)
+	java.lang.ref.Reference$ReferenceHandler.run(Reference.java:Unknown line)
+TRACE 308022:
+	java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:Unknown line)
+	java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:Unknown line)
+	java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:Unknown line)
+TRACE 307528:
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+TRACE 307522:
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+TRACE 308454:
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307521:
+	java.nio.HeapCharBuffer.get(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+TRACE 307524:
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match(Pattern.java:Unknown line)
+TRACE 308428:
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308452:
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 307684:
+	java.lang.Character.toUpperCaseEx(Character.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 307612:
+	java.lang.CharacterDataLatin1.toUpperCaseEx(CharacterDataLatin1.java:Unknown line)
+	java.lang.Character.toUpperCaseEx(Character.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+TRACE 308279:
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	java.util.HashSet.contains(HashSet.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307687:
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 308405:
+	java.util.LinkedList$ListItr.next(LinkedList.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 307551:
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Start.match(Pattern.java:Unknown line)
+TRACE 307677:
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:Unknown line)
+TRACE 308285:
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307519:
+	java.nio.Buffer.checkIndex(Buffer.java:Unknown line)
+	java.nio.HeapCharBuffer.get(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+TRACE 307518:
+	java.nio.Buffer.checkIndex(Buffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+TRACE 307517:
+	java.nio.Buffer.position(Buffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+TRACE 307660:
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 307520:
+	java.nio.HeapCharBuffer.ix(HeapCharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.get(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+TRACE 308402:
+	java.util.LinkedList$ListItr.hasNext(LinkedList.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308429:
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308435:
+	java.util.LinkedList.addBefore(LinkedList.java:Unknown line)
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308436:
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308425:
+	hangman.CharArray.hashCode(CharArray.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+TRACE 307525:
+	java.util.regex.Pattern$Dot.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match(Pattern.java:Unknown line)
+TRACE 308447:
+	hangman.CharArray.hashCode(CharArray.java:Unknown line)
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307523:
+	java.lang.Character.isHighSurrogate(Character.java:Unknown line)
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+TRACE 300765:
+	java.lang.CharacterDataLatin1.getProperties(CharacterDataLatin1.java:Unknown line)
+	java.lang.CharacterDataLatin1.toUpperCaseEx(CharacterDataLatin1.java:Unknown line)
+	java.lang.Character.toUpperCaseEx(Character.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+TRACE 308058:
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:Unknown line)
+	hangman.CommandLineParser.main(CommandLineParser.java:Unknown line)
+TRACE 307527:
+	java.util.regex.Pattern$Node.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match(Pattern.java:Unknown line)
+TRACE 307526:
+	java.lang.Character.charCount(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match(Pattern.java:Unknown line)
+TRACE 308130:
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:Unknown line)
+TRACE 308281:
+	java.util.HashSet.contains(HashSet.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308280:
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	java.util.HashSet.contains(HashSet.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307566:
+	java.nio.HeapCharBuffer.subSequence(HeapCharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307548:
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+TRACE 307669:
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307534:
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.util.regex.Pattern$Slice.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:Unknown line)
+TRACE 307575:
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+TRACE 307663:
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307574:
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+TRACE 307536:
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+TRACE 307582:
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.toMatchResult(Matcher.java:Unknown line)
+	java.util.Scanner.match(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 307493:
+	java.util.regex.Matcher.region(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 308110:
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308128:
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 308274:
+	java.util.LinkedList$ListItr.next(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308406:
+	hangman.Partition.makeMask(Partition.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 307489:
+	java.util.regex.Matcher.getTextLength(Matcher.java:Unknown line)
+	java.util.regex.Matcher.region(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+TRACE 308426:
+	java.util.HashMap.hash(HashMap.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+TRACE 308448:
+	java.util.HashMap.hash(HashMap.java:Unknown line)
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307488:
+	java.nio.CharBuffer.length(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getTextLength(Matcher.java:Unknown line)
+	java.util.regex.Matcher.region(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+TRACE 308451:
+	hangman.CharArray.equals(CharArray.java:Unknown line)
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308445:
+	hangman.CharArray.equals(CharArray.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+TRACE 308427:
+	java.util.HashMap.indexFor(HashMap.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+TRACE 308403:
+	java.util.LinkedList$ListItr.checkForComodification(LinkedList.java:Unknown line)
+	java.util.LinkedList$ListItr.next(LinkedList.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308449:
+	java.util.HashMap.indexFor(HashMap.java:Unknown line)
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308401:
+	java.util.LinkedList.access$100(LinkedList.java:Unknown line)
+	java.util.LinkedList$ListItr.hasNext(LinkedList.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308424:
+	java.util.Arrays.hashCode(Arrays.java:Unknown line)
+	hangman.CharArray.hashCode(CharArray.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+TRACE 308404:
+	java.util.LinkedList.access$100(LinkedList.java:Unknown line)
+	java.util.LinkedList$ListItr.next(LinkedList.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308446:
+	java.util.Arrays.hashCode(Arrays.java:Unknown line)
+	hangman.CharArray.hashCode(CharArray.java:Unknown line)
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+TRACE 308434:
+	java.util.LinkedList$Entry.<init>(LinkedList.java:Unknown line)
+	java.util.LinkedList.addBefore(LinkedList.java:Unknown line)
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+TRACE 308413:
+	hangman.CharArray.<init>(CharArray.java:Unknown line)
+	hangman.Partition.makePartition(Partition.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 307538:
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:Unknown line)
+TRACE 307549:
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match(Pattern.java:Unknown line)
+TRACE 307675:
+	java.util.Scanner.cacheResult(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307533:
+	java.nio.HeapCharBuffer.get(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.util.regex.Pattern$Slice.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+TRACE 307664:
+	java.util.regex.Matcher.toMatchResult(Matcher.java:Unknown line)
+	java.util.Scanner.match(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 308105:
+	java.util.AbstractList$Itr.next(AbstractList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 308277:
+	java.util.HashMap.hash(HashMap.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	java.util.HashSet.contains(HashSet.java:Unknown line)
+TRACE 307688:
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:Unknown line)
+TRACE 307563:
+	java.nio.Buffer.<init>(Buffer.java:Unknown line)
+	java.nio.CharBuffer.<init>(CharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.<init>(HeapCharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.subSequence(HeapCharBuffer.java:Unknown line)
+TRACE 307680:
+	java.util.Scanner.nextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:Unknown line)
+TRACE 308275:
+	java.lang.Character.valueOf(Character.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308278:
+	java.util.HashMap.indexFor(HashMap.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	java.util.HashSet.contains(HashSet.java:Unknown line)
+TRACE 308276:
+	java.lang.Character.hashCode(Character.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	java.util.HashSet.contains(HashSet.java:Unknown line)
+TRACE 308271:
+	java.util.LinkedList$ListItr.hasNext(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 307571:
+	java.util.Arrays.copyOfRange(Arrays.java:Unknown line)
+	java.lang.String.<init>(String.java:Unknown line)
+	java.nio.HeapCharBuffer.toString(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+TRACE 307540:
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+TRACE 307573:
+	java.nio.HeapCharBuffer.toString(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307586:
+	java.util.regex.Matcher.<init>(Matcher.java:Unknown line)
+	java.util.regex.Matcher.toMatchResult(Matcher.java:Unknown line)
+	java.util.Scanner.match(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 307690:
+	java.lang.String.toCharArray(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:Unknown line)
+TRACE 307535:
+	java.util.regex.Pattern$Slice.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+TRACE 307572:
+	java.lang.String.<init>(String.java:Unknown line)
+	java.nio.HeapCharBuffer.toString(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307584:
+	java.util.regex.Matcher.getTextLength(Matcher.java:Unknown line)
+	java.util.regex.Matcher.reset(Matcher.java:Unknown line)
+	java.util.regex.Matcher.<init>(Matcher.java:Unknown line)
+	java.util.regex.Matcher.toMatchResult(Matcher.java:Unknown line)
+TRACE 307567:
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+TRACE 307591:
+	java.lang.String.substring(String.java:Unknown line)
+	java.lang.String.subSequence(String.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307495:
+	java.util.regex.Matcher.search(Matcher.java:Unknown line)
+	java.util.regex.Matcher.find(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+TRACE 307692:
+	java.util.ArrayList.add(ArrayList.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:Unknown line)
+TRACE 307576:
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 307542:
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:Unknown line)
+TRACE 307552:
+	java.util.regex.Pattern$Curly.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Start.match(Pattern.java:Unknown line)
+	java.util.regex.Matcher.search(Matcher.java:Unknown line)
+TRACE 308101:
+	java.util.AbstractList$Itr.hasNext(AbstractList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307550:
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Curly.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+TRACE 307546:
+	java.util.regex.Pattern$GroupTail.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$BranchConn.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+TRACE 307581:
+	java.nio.HeapCharBuffer.toString(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.toMatchResult(Matcher.java:Unknown line)
+	java.util.Scanner.match(Scanner.java:Unknown line)
+TRACE 307494:
+	java.util.regex.Pattern$Start.match(Pattern.java:Unknown line)
+	java.util.regex.Matcher.search(Matcher.java:Unknown line)
+	java.util.regex.Matcher.find(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+TRACE 307547:
+	java.util.regex.Pattern$BranchConn.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:Unknown line)
+TRACE 307665:
+	java.util.Scanner.match(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 308104:
+	java.util.ArrayList.get(ArrayList.java:Unknown line)
+	java.util.AbstractList$Itr.next(AbstractList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307492:
+	java.util.regex.Matcher.reset(Matcher.java:Unknown line)
+	java.util.regex.Matcher.region(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+TRACE 307565:
+	java.nio.HeapCharBuffer.<init>(HeapCharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.subSequence(HeapCharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307490:
+	java.nio.CharBuffer.length(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getTextLength(Matcher.java:Unknown line)
+	java.util.regex.Matcher.reset(Matcher.java:Unknown line)
+	java.util.regex.Matcher.region(Matcher.java:Unknown line)
+TRACE 308118:
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 308111:
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307541:
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+TRACE 308117:
+	java.util.LinkedList.addBefore(LinkedList.java:Unknown line)
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307564:
+	java.nio.CharBuffer.<init>(CharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.<init>(HeapCharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.subSequence(HeapCharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+TRACE 307553:
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Start.match(Pattern.java:Unknown line)
+	java.util.regex.Matcher.search(Matcher.java:Unknown line)
+	java.util.regex.Matcher.find(Matcher.java:Unknown line)
+TRACE 307580:
+	java.lang.String.<init>(String.java:Unknown line)
+	java.nio.HeapCharBuffer.toString(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.toMatchResult(Matcher.java:Unknown line)
+TRACE 307491:
+	java.util.regex.Matcher.getTextLength(Matcher.java:Unknown line)
+	java.util.regex.Matcher.reset(Matcher.java:Unknown line)
+	java.util.regex.Matcher.region(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+TRACE 307545:
+	java.util.regex.Pattern$BranchConn.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupTail.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$BranchConn.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+TRACE 307558:
+	java.nio.CharBuffer.length(CharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.subSequence(HeapCharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307496:
+	java.util.regex.Matcher.find(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 307672:
+	java.lang.String.substring(String.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307592:
+	java.lang.String.subSequence(String.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 307585:
+	java.util.regex.Matcher.reset(Matcher.java:Unknown line)
+	java.util.regex.Matcher.<init>(Matcher.java:Unknown line)
+	java.util.regex.Matcher.toMatchResult(Matcher.java:Unknown line)
+	java.util.Scanner.match(Scanner.java:Unknown line)
+TRACE 307667:
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 307670:
+	java.lang.String.length(String.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307487:
+	java.nio.Buffer.remaining(Buffer.java:Unknown line)
+	java.nio.CharBuffer.length(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getTextLength(Matcher.java:Unknown line)
+	java.util.regex.Matcher.region(Matcher.java:Unknown line)
+TRACE 307485:
+	java.util.regex.Matcher.usePattern(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 308314:
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 308273:
+	java.util.LinkedList.access$100(LinkedList.java:Unknown line)
+	java.util.LinkedList$ListItr.next(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307681:
+	java.lang.String.trim(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:Unknown line)
+TRACE 308272:
+	java.util.LinkedList$ListItr.checkForComodification(LinkedList.java:Unknown line)
+	java.util.LinkedList$ListItr.next(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308270:
+	java.util.LinkedList.access$100(LinkedList.java:Unknown line)
+	java.util.LinkedList$ListItr.hasNext(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307676:
+	java.util.Scanner.revertState(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307530:
+	java.nio.Buffer.checkIndex(Buffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.util.regex.Pattern$Slice.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+TRACE 307590:
+	java.lang.String.<init>(String.java:Unknown line)
+	java.lang.String.substring(String.java:Unknown line)
+	java.lang.String.subSequence(String.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+TRACE 307486:
+	java.nio.Buffer.limit(Buffer.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 308116:
+	java.util.LinkedList$Entry.<init>(LinkedList.java:Unknown line)
+	java.util.LinkedList.addBefore(LinkedList.java:Unknown line)
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307562:
+	java.nio.Buffer.position(Buffer.java:Unknown line)
+	java.nio.Buffer.<init>(Buffer.java:Unknown line)
+	java.nio.CharBuffer.<init>(CharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.<init>(HeapCharBuffer.java:Unknown line)
+TRACE 307659:
+	java.util.Scanner.clearCaches(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 307568:
+	java.nio.Buffer.position(Buffer.java:Unknown line)
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307678:
+	java.util.Scanner.linePattern(Scanner.java:Unknown line)
+	java.util.Scanner.nextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307674:
+	java.util.regex.Matcher.pattern(Matcher.java:Unknown line)
+	java.util.Scanner.cacheResult(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 308126:
+	java.util.HashMap.hash(HashMap.java:Unknown line)
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307689:
+	java.lang.String.getChars(String.java:Unknown line)
+	java.lang.String.toCharArray(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307559:
+	java.nio.Buffer.position(Buffer.java:Unknown line)
+	java.nio.HeapCharBuffer.subSequence(HeapCharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307532:
+	java.nio.HeapCharBuffer.ix(HeapCharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.get(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.util.regex.Pattern$Slice.match(Pattern.java:Unknown line)
+TRACE 307561:
+	java.nio.Buffer.limit(Buffer.java:Unknown line)
+	java.nio.Buffer.<init>(Buffer.java:Unknown line)
+	java.nio.CharBuffer.<init>(CharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.<init>(HeapCharBuffer.java:Unknown line)
+TRACE 307529:
+	java.nio.Buffer.position(Buffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.util.regex.Pattern$Slice.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+TRACE 307531:
+	java.nio.Buffer.checkIndex(Buffer.java:Unknown line)
+	java.nio.HeapCharBuffer.get(HeapCharBuffer.java:Unknown line)
+	java.nio.CharBuffer.charAt(CharBuffer.java:Unknown line)
+	java.util.regex.Pattern$Slice.match(Pattern.java:Unknown line)
+TRACE 306256:
+	java.nio.Buffer.remaining(Buffer.java:Unknown line)
+	java.nio.CharBuffer.length(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getTextLength(Matcher.java:Unknown line)
+	java.util.regex.Matcher.reset(Matcher.java:Unknown line)
+TRACE 307555:
+	java.util.regex.Matcher.end(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 307671:
+	java.lang.String.<init>(String.java:Unknown line)
+	java.lang.String.substring(String.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 304416:
+	java.lang.String.length(String.java:Unknown line)
+	java.util.regex.Matcher.getTextLength(Matcher.java:Unknown line)
+	java.util.regex.Matcher.reset(Matcher.java:Unknown line)
+	java.util.regex.Matcher.<init>(Matcher.java:Unknown line)
+TRACE 307683:
+	java.util.Locale.getDefault(Locale.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307673:
+	java.util.regex.Matcher.end(Matcher.java:Unknown line)
+	java.util.Scanner.cacheResult(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 307560:
+	java.nio.Buffer.capacity(Buffer.java:Unknown line)
+	java.nio.HeapCharBuffer.subSequence(HeapCharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307554:
+	java.util.regex.Matcher.hitEnd(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+TRACE 307657:
+	java.util.Scanner.linePattern(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307658:
+	java.util.Scanner.ensureOpen(Scanner.java:Unknown line)
+	java.util.Scanner.findWithinHorizon(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 307569:
+	java.nio.Buffer.limit(Buffer.java:Unknown line)
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+TRACE 307685:
+	java.util.Locale.getLanguage(Locale.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 307537:
+	java.lang.Character.isHighSurrogate(Character.java:Unknown line)
+	java.lang.Character.codePointAt(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+TRACE 308109:
+	java.util.HashMap.indexFor(HashMap.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307544:
+	java.util.regex.Pattern$LastNode.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$BranchConn.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupTail.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$BranchConn.match(Pattern.java:Unknown line)
+TRACE 307557:
+	java.nio.Buffer.remaining(Buffer.java:Unknown line)
+	java.nio.CharBuffer.length(CharBuffer.java:Unknown line)
+	java.nio.HeapCharBuffer.subSequence(HeapCharBuffer.java:Unknown line)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:Unknown line)
+TRACE 308106:
+	java.lang.Integer.valueOf(Integer.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307579:
+	java.nio.Buffer.limit(Buffer.java:Unknown line)
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.toMatchResult(Matcher.java:Unknown line)
+	java.util.Scanner.match(Scanner.java:Unknown line)
+TRACE 307666:
+	java.util.regex.Matcher.groupCount(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 307691:
+	java.util.ArrayList.ensureCapacity(ArrayList.java:Unknown line)
+	java.util.ArrayList.add(ArrayList.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307668:
+	java.lang.String.toString(String.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 308102:
+	java.util.AbstractList$Itr.checkForComodification(AbstractList.java:Unknown line)
+	java.util.AbstractList$Itr.next(AbstractList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308127:
+	java.util.HashMap.indexFor(HashMap.java:Unknown line)
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307578:
+	java.nio.Buffer.position(Buffer.java:Unknown line)
+	java.nio.CharBuffer.toString(CharBuffer.java:Unknown line)
+	java.util.regex.Matcher.toMatchResult(Matcher.java:Unknown line)
+	java.util.Scanner.match(Scanner.java:Unknown line)
+TRACE 307686:
+	java.lang.String.<init>(String.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	java.lang.String.toUpperCase(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+TRACE 308125:
+	java.lang.Integer.hashCode(Integer.java:Unknown line)
+	java.util.HashMap.get(HashMap.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308108:
+	java.util.HashMap.hash(HashMap.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307539:
+	java.util.regex.Pattern$BitClass.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:Unknown line)
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:Unknown line)
+TRACE 307656:
+	java.util.Scanner.saveState(Scanner.java:Unknown line)
+	java.util.Scanner.hasNextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 307679:
+	java.util.Scanner.getCachedResult(Scanner.java:Unknown line)
+	java.util.Scanner.nextLine(Scanner.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+TRACE 308100:
+	java.util.ArrayList.size(ArrayList.java:Unknown line)
+	java.util.AbstractList$Itr.hasNext(AbstractList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307682:
+	java.lang.String.length(String.java:Unknown line)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:Unknown line)
+	hangman.AbstractScoring.score(AbstractScoring.java:Unknown line)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:Unknown line)
+TRACE 308107:
+	java.lang.Integer.hashCode(Integer.java:Unknown line)
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308103:
+	java.util.ArrayList.RangeCheck(ArrayList.java:Unknown line)
+	java.util.ArrayList.get(ArrayList.java:Unknown line)
+	java.util.AbstractList$Itr.next(AbstractList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:Unknown line)
+TRACE 307543:
+	java.lang.Character.charCount(Character.java:Unknown line)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$Branch.match(Pattern.java:Unknown line)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:Unknown line)
+TRACE 307556:
+	java.util.regex.Matcher.groupCount(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.regex.Matcher.group(Matcher.java:Unknown line)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:Unknown line)
+TRACE 308307:
+	java.util.HashMap.getEntry(HashMap.java:Unknown line)
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	java.util.HashSet.contains(HashSet.java:Unknown line)
+	java.util.Collections$UnmodifiableCollection.contains(Collections.java:Unknown line)
+TRACE 308302:
+	java.util.LinkedList$ListItr.next(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308284:
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308305:
+	java.lang.String.<init>(String.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308312:
+	java.util.LinkedList.addBefore(LinkedList.java:Unknown line)
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308347:
+	java.lang.Character.compareTo(Character.java:Unknown line)
+	java.util.TreeMap.put(TreeMap.java:Unknown line)
+	java.util.TreeSet.add(TreeSet.java:Unknown line)
+	hangman.EntropyGuessingStrategy.uniqueLetters(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308304:
+	java.lang.StringValue.from(StringValue.java:Unknown line)
+	java.lang.String.<init>(String.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308344:
+	java.util.TreeMap.put(TreeMap.java:Unknown line)
+	java.util.TreeSet.add(TreeSet.java:Unknown line)
+	hangman.EntropyGuessingStrategy.uniqueLetters(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308308:
+	java.util.HashMap.containsKey(HashMap.java:Unknown line)
+	java.util.HashSet.contains(HashSet.java:Unknown line)
+	java.util.Collections$UnmodifiableCollection.contains(Collections.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308299:
+	java.util.LinkedList$ListItr.hasNext(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308283:
+	java.util.LinkedList.addBefore(LinkedList.java:Unknown line)
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308310:
+	java.util.Collections$UnmodifiableCollection.contains(Collections.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308313:
+	java.util.LinkedList.add(LinkedList.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+	hangman.HangmanGame.score(HangmanGame.java:Unknown line)
+TRACE 308309:
+	java.util.HashSet.contains(HashSet.java:Unknown line)
+	java.util.Collections$UnmodifiableCollection.contains(Collections.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:Unknown line)
+TRACE 308303:
+	java.util.Arrays.copyOf(Arrays.java:Unknown line)
+	java.lang.StringValue.from(StringValue.java:Unknown line)
+	java.lang.String.<init>(String.java:Unknown line)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:Unknown line)
+CPU TIME (ms) BEGIN (total = 847194) Thu Sep  8 16:09:12 2011
+rank   self  accum   count trace method
+   1 29.20% 29.20%       2 308011 java.lang.Object.wait
+   2 29.20% 58.40%      60 308022 java.lang.ref.ReferenceQueue.remove
+   3  2.57% 60.98% 1768240 307528 java.util.regex.Pattern$CharProperty.match
+   4  2.09% 63.06% 1765130 307522 java.nio.CharBuffer.charAt
+   5  1.77% 64.83%     168 308454 hangman.Partition.makePartition
+   6  1.71% 66.54% 1948558 307521 java.nio.HeapCharBuffer.get
+   7  1.58% 68.12% 1765130 307524 java.lang.Character.codePointAt
+   8  1.19% 69.31%  763628 308428 java.util.HashMap.getEntry
+   9  1.16% 70.46%  761767 308452 java.util.HashMap.get
+  10  0.99% 71.45% 1749989 307684 java.lang.Character.toUpperCaseEx
+  11  0.98% 72.43% 1750011 307612 java.lang.CharacterDataLatin1.toUpperCaseEx
+  12  0.72% 73.15%  593734 308279 java.util.HashMap.getEntry
+  13  0.71% 73.85%  173528 307687 java.lang.String.toUpperCase
+  14  0.70% 74.55%  763628 308405 java.util.LinkedList$ListItr.next
+  15  0.67% 75.22%  176640 307551 java.util.regex.Pattern$Curly.match0
+  16  0.61% 75.82%  173530 307677 java.util.Scanner.hasNextLine
+  17  0.54% 76.37%       9 308285 hangman.EntropyGuessingStrategy.filter
+  18  0.47% 76.84% 1948558 307519 java.nio.Buffer.checkIndex
+  19  0.46% 77.29% 1948558 307518 java.nio.Buffer.checkIndex
+  20  0.45% 77.74% 1948558 307517 java.nio.Buffer.position
+  21  0.45% 78.19%  175249 307660 java.util.Scanner.findPatternInBuffer
+  22  0.44% 78.63% 1948558 307520 java.nio.HeapCharBuffer.ix
+  23  0.44% 79.08%  763796 308402 java.util.LinkedList$ListItr.hasNext
+  24  0.44% 79.52%  763628 308429 java.util.HashMap.containsKey
+  25  0.44% 79.96%  763628 308435 java.util.LinkedList.addBefore
+  26  0.43% 80.38%  763628 308436 java.util.LinkedList.add
+  27  0.42% 80.81%  763628 308425 hangman.CharArray.hashCode
+  28  0.42% 81.23% 1765130 307525 java.util.regex.Pattern$Dot.isSatisfiedBy
+  29  0.42% 81.65%  761767 308447 hangman.CharArray.hashCode
+  30  0.41% 82.06% 1765130 307523 java.lang.Character.isHighSurrogate
+  31  0.41% 82.47% 1752948 300765 java.lang.CharacterDataLatin1.getProperties
+  32  0.39% 82.87%       1 308058 hangman.FileReader.readLinesAsArrays
+  33  0.38% 83.24% 1591600 307527 java.util.regex.Pattern$Node.match
+  34  0.37% 83.61% 1591600 307526 java.lang.Character.charCount
+  35  0.35% 83.96%       1 308130 hangman.EntropyGuessingStrategy.partitionByLength
+  36  0.33% 84.29%  593734 308281 java.util.HashSet.contains
+  37  0.33% 84.62%  593734 308280 java.util.HashMap.containsKey
+  38  0.28% 84.90%  173530 307566 java.nio.HeapCharBuffer.subSequence
+  39  0.28% 85.17%  183428 307548 java.util.regex.Pattern$CharProperty.match
+  40  0.22% 85.39%  173529 307669 java.util.regex.Matcher.group
+  41  0.22% 85.61%  181873 307534 java.nio.CharBuffer.charAt
+  42  0.22% 85.83%  173530 307575 java.util.regex.Matcher.group
+  43  0.22% 86.05%  173530 307663 java.util.Scanner.findWithinHorizon
+  44  0.21% 86.26%  173530 307574 java.nio.CharBuffer.toString
+  45  0.21% 86.47%  181873 307536 java.nio.CharBuffer.charAt
+  46  0.21% 86.68%  173530 307582 java.nio.CharBuffer.toString
+  47  0.21% 86.88%  175253 307493 java.util.regex.Matcher.region
+  48  0.21% 87.09%  173528 308110 java.util.HashMap.getEntry
+  49  0.21% 87.30%  173502 308128 java.util.HashMap.get
+  50  0.20% 87.49%  208872 308274 java.util.LinkedList$ListItr.next
+  51  0.20% 87.69%  763628 308406 hangman.Partition.makeMask
+  52  0.19% 87.88%  350506 307489 java.util.regex.Matcher.getTextLength
+  53  0.19% 88.07%  763628 308426 java.util.HashMap.hash
+  54  0.19% 88.26%  761767 308448 java.util.HashMap.hash
+  55  0.19% 88.45%  350506 307488 java.nio.CharBuffer.length
+  56  0.19% 88.64%  761767 308451 hangman.CharArray.equals
+  57  0.18% 88.82%  761767 308445 hangman.CharArray.equals
+  58  0.18% 89.00%  763628 308427 java.util.HashMap.indexFor
+  59  0.18% 89.19%  763628 308403 java.util.LinkedList$ListItr.checkForComodification
+  60  0.18% 89.37%  761767 308449 java.util.HashMap.indexFor
+  61  0.18% 89.55%  763796 308401 java.util.LinkedList.access$100
+  62  0.18% 89.73%  763628 308424 java.util.Arrays.hashCode
+  63  0.18% 89.91%  763628 308404 java.util.LinkedList.access$100
+  64  0.18% 90.09%  761767 308446 java.util.Arrays.hashCode
+  65  0.18% 90.27%  763628 308434 java.util.LinkedList$Entry.<init>
+  66  0.18% 90.44%  763628 308413 hangman.CharArray.<init>
+  67  0.17% 90.61%  181873 307538 java.lang.Character.codePointAt
+  68  0.16% 90.77%  183428 307549 java.util.regex.Pattern$Branch.match
+  69  0.16% 90.93%  173529 307675 java.util.Scanner.cacheResult
+  70  0.16% 91.09%  181873 307533 java.nio.HeapCharBuffer.get
+  71  0.16% 91.25%  173529 307664 java.util.regex.Matcher.toMatchResult
+  72  0.16% 91.40%  173528 308105 java.util.AbstractList$Itr.next
+  73  0.15% 91.56%  623494 308277 java.util.HashMap.hash
+  74  0.15% 91.71%  173528 307688 java.lang.String.toUpperCase
+  75  0.15% 91.86%  173530 307563 java.nio.Buffer.<init>
+  76  0.15% 92.01%  173529 307680 java.util.Scanner.nextLine
+  77  0.14% 92.15%  593734 308275 java.lang.Character.valueOf
+  78  0.14% 92.29%  623494 308278 java.util.HashMap.indexFor
+  79  0.14% 92.43%  593741 308276 java.lang.Character.hashCode
+  80  0.12% 92.55%  208881 308271 java.util.LinkedList$ListItr.hasNext
+  81  0.11% 92.66%  347060 307571 java.util.Arrays.copyOfRange
+  82  0.11% 92.77%  181873 307540 java.util.regex.Pattern$6.isSatisfiedBy
+  83  0.11% 92.88%  173530 307573 java.nio.HeapCharBuffer.toString
+  84  0.10% 92.98%  173530 307586 java.util.regex.Matcher.<init>
+  85  0.10% 93.09%  173528 307690 java.lang.String.toCharArray
+  86  0.10% 93.19%  183428 307535 java.util.regex.Pattern$Slice.match
+  87  0.10% 93.30%  173530 307572 java.lang.String.<init>
+  88  0.10% 93.40%  173530 307584 java.util.regex.Matcher.getTextLength
+  89  0.10% 93.50%  173530 307567 java.util.regex.Matcher.getSubSequence
+  90  0.10% 93.60%  173546 307591 java.lang.String.substring
+  91  0.10% 93.71%  175253 307495 java.util.regex.Matcher.search
+  92  0.10% 93.81%  173528 307692 java.util.ArrayList.add
+  93  0.10% 93.91%  173530 307576 java.util.regex.Matcher.group
+  94  0.10% 94.01%  181873 307542 java.util.regex.Pattern$6.isSatisfiedBy
+  95  0.10% 94.11%  176640 307552 java.util.regex.Pattern$Curly.match
+  96  0.10% 94.21%  173529 308101 java.util.AbstractList$Itr.hasNext
+  97  0.10% 94.31%  183428 307550 java.util.regex.Pattern$GroupHead.match
+  98  0.10% 94.41%  173530 307546 java.util.regex.Pattern$GroupTail.match
+  99  0.10% 94.51%  173530 307581 java.nio.HeapCharBuffer.toString
+ 100  0.10% 94.61%  175253 307494 java.util.regex.Pattern$Start.match
+ 101  0.10% 94.71%  173530 307547 java.util.regex.Pattern$BranchConn.match
+ 102  0.10% 94.81%  173529 307665 java.util.Scanner.match
+ 103  0.10% 94.91%  173528 308104 java.util.ArrayList.get
+ 104  0.10% 95.01%  175253 307492 java.util.regex.Matcher.reset
+ 105  0.10% 95.10%  173530 307565 java.nio.HeapCharBuffer.<init>
+ 106  0.10% 95.20%  175253 307490 java.nio.CharBuffer.length
+ 107  0.10% 95.30%  173528 308118 java.util.LinkedList.add
+ 108  0.10% 95.40%  173528 308111 java.util.HashMap.containsKey
+ 109  0.10% 95.50%  181873 307541 java.util.regex.Pattern$6.isSatisfiedBy
+ 110  0.10% 95.59%  173528 308117 java.util.LinkedList.addBefore
+ 111  0.10% 95.69%  173530 307564 java.nio.CharBuffer.<init>
+ 112  0.10% 95.79%  175085 307553 java.util.regex.Pattern$Branch.match
+ 113  0.10% 95.89%  173530 307580 java.lang.String.<init>
+ 114  0.10% 95.98%  175253 307491 java.util.regex.Matcher.getTextLength
+ 115  0.09% 96.08%  173530 307545 java.util.regex.Pattern$BranchConn.match
+ 116  0.09% 96.17%  173530 307558 java.nio.CharBuffer.length
+ 117  0.09% 96.27%  175253 307496 java.util.regex.Matcher.find
+ 118  0.09% 96.36%  173529 307672 java.lang.String.substring
+ 119  0.09% 96.45%  173530 307592 java.lang.String.subSequence
+ 120  0.09% 96.54%  173530 307585 java.util.regex.Matcher.reset
+ 121  0.09% 96.63%  173529 307667 java.util.regex.Matcher.getSubSequence
+ 122  0.08% 96.72%  347058 307670 java.lang.String.length
+ 123  0.08% 96.79%  350506 307487 java.nio.Buffer.remaining
+ 124  0.05% 96.84%  175253 307485 java.util.regex.Matcher.usePattern
+ 125  0.05% 96.89%       9 308314 hangman.EntropyGuessingStrategy.filter
+ 126  0.05% 96.94%  208872 308273 java.util.LinkedList.access$100
+ 127  0.05% 96.99%  173529 307681 java.lang.String.trim
+ 128  0.05% 97.04%  208872 308272 java.util.LinkedList$ListItr.checkForComodification
+ 129  0.05% 97.08%  208881 308270 java.util.LinkedList.access$100
+ 130  0.05% 97.13%  173530 307676 java.util.Scanner.revertState
+ 131  0.04% 97.17%  181873 307530 java.nio.Buffer.checkIndex
+ 132  0.04% 97.22%  173546 307590 java.lang.String.<init>
+ 133  0.04% 97.26%  175253 307486 java.nio.Buffer.limit
+ 134  0.04% 97.31%  173528 308116 java.util.LinkedList$Entry.<init>
+ 135  0.04% 97.35%  173530 307562 java.nio.Buffer.position
+ 136  0.04% 97.40%  173530 307659 java.util.Scanner.clearCaches
+ 137  0.04% 97.44%  173530 307568 java.nio.Buffer.position
+ 138  0.04% 97.48%  173529 307678 java.util.Scanner.linePattern
+ 139  0.04% 97.53%  173529 307674 java.util.regex.Matcher.pattern
+ 140  0.04% 97.57%  173502 308126 java.util.HashMap.hash
+ 141  0.04% 97.62%  173528 307689 java.lang.String.getChars
+ 142  0.04% 97.66%  173530 307559 java.nio.Buffer.position
+ 143  0.04% 97.70%  181873 307532 java.nio.HeapCharBuffer.ix
+ 144  0.04% 97.75%  173530 307561 java.nio.Buffer.limit
+ 145  0.04% 97.79%  181873 307529 java.nio.Buffer.position
+ 146  0.04% 97.83%  181873 307531 java.nio.Buffer.checkIndex
+ 147  0.04% 97.87%  175255 306256 java.nio.Buffer.remaining
+ 148  0.04% 97.92%  173530 307555 java.util.regex.Matcher.end
+ 149  0.04% 97.96%  173529 307671 java.lang.String.<init>
+ 150  0.04% 98.00%  173538 304416 java.lang.String.length
+ 151  0.04% 98.04%  173528 307683 java.util.Locale.getDefault
+ 152  0.04% 98.09%  173529 307673 java.util.regex.Matcher.end
+ 153  0.04% 98.13%  173530 307560 java.nio.Buffer.capacity
+ 154  0.04% 98.17%  175085 307554 java.util.regex.Matcher.hitEnd
+ 155  0.04% 98.21%  173530 307657 java.util.Scanner.linePattern
+ 156  0.04% 98.26%  173530 307658 java.util.Scanner.ensureOpen
+ 157  0.04% 98.30%  173530 307569 java.nio.Buffer.limit
+ 158  0.04% 98.34%  173528 307685 java.util.Locale.getLanguage
+ 159  0.04% 98.38%  181873 307537 java.lang.Character.isHighSurrogate
+ 160  0.04% 98.42%  173528 308109 java.util.HashMap.indexFor
+ 161  0.04% 98.46%  173530 307544 java.util.regex.Pattern$LastNode.match
+ 162  0.04% 98.50%  173530 307557 java.nio.Buffer.remaining
+ 163  0.04% 98.55%  173528 308106 java.lang.Integer.valueOf
+ 164  0.04% 98.59%  173530 307579 java.nio.Buffer.limit
+ 165  0.04% 98.63%  173529 307666 java.util.regex.Matcher.groupCount
+ 166  0.04% 98.67%  173528 307691 java.util.ArrayList.ensureCapacity
+ 167  0.04% 98.71%  173529 307668 java.lang.String.toString
+ 168  0.04% 98.75%  173528 308102 java.util.AbstractList$Itr.checkForComodification
+ 169  0.04% 98.79%  173502 308127 java.util.HashMap.indexFor
+ 170  0.04% 98.83%  173530 307578 java.nio.Buffer.position
+ 171  0.04% 98.87%  173528 307686 java.lang.String.<init>
+ 172  0.04% 98.91%  173502 308125 java.lang.Integer.hashCode
+ 173  0.04% 98.95%  173528 308108 java.util.HashMap.hash
+ 174  0.04% 98.99%  181873 307539 java.util.regex.Pattern$BitClass.isSatisfiedBy
+ 175  0.04% 99.03%  173530 307656 java.util.Scanner.saveState
+ 176  0.04% 99.07%  173529 307679 java.util.Scanner.getCachedResult
+ 177  0.04% 99.11%  173529 308100 java.util.ArrayList.size
+ 178  0.04% 99.15%  173529 307682 java.lang.String.length
+ 179  0.04% 99.18%  173528 308107 java.lang.Integer.hashCode
+ 180  0.04% 99.22%  173528 308103 java.util.ArrayList.RangeCheck
+ 181  0.04% 99.26%  173530 307543 java.lang.Character.charCount
+ 182  0.04% 99.30%  173530 307556 java.util.regex.Matcher.groupCount
+ 183  0.03% 99.33%   29753 308307 java.util.HashMap.getEntry
+ 184  0.03% 99.36%   29753 308302 java.util.LinkedList$ListItr.next
+ 185  0.02% 99.38%   29753 308284 java.util.LinkedList.add
+ 186  0.02% 99.40%   29753 308305 java.lang.String.<init>
+ 187  0.02% 99.41%   29753 308312 java.util.LinkedList.addBefore
+ 188  0.02% 99.43%   32528 308347 java.lang.Character.compareTo
+ 189  0.02% 99.45%   29753 308304 java.lang.StringValue.from
+ 190  0.02% 99.47%    9268 308344 java.util.TreeMap.put
+ 191  0.02% 99.49%   29753 308308 java.util.HashMap.containsKey
+ 192  0.02% 99.50%   29762 308299 java.util.LinkedList$ListItr.hasNext
+ 193  0.02% 99.52%   29753 308283 java.util.LinkedList.addBefore
+ 194  0.02% 99.53%   29753 308310 java.util.Collections$UnmodifiableCollection.contains
+ 195  0.02% 99.55%   29753 308313 java.util.LinkedList.add
+ 196  0.02% 99.57%   29753 308309 java.util.HashSet.contains
+ 197  0.01% 99.58%   29753 308303 java.util.Arrays.copyOf
+CPU TIME (ms) END

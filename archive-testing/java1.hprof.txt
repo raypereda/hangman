@@ -1,0 +1,555 @@
+JAVA PROFILE 1.0.1, created Thu Sep  8 15:50:13 2011
+
+Header for -agentlib:hprof (or -Xrunhprof) ASCII Output (JDK 5.0 JVMTI based)
+
+%W% %E%
+
+ Copyright (c) 2006 Sun Microsystems, Inc. All  Rights Reserved.
+
+WARNING!  This file format is under development, and is subject to
+change without notice.
+
+This file contains the following types of records:
+
+THREAD START
+THREAD END      mark the lifetime of Java threads
+
+TRACE           represents a Java stack trace.  Each trace consists
+                of a series of stack frames.  Other records refer to
+                TRACEs to identify (1) where object allocations have
+                taken place, (2) the frames in which GC roots were
+                found, and (3) frequently executed methods.
+
+HEAP DUMP       is a complete snapshot of all live objects in the Java
+                heap.  Following distinctions are made:
+
+                ROOT    root set as determined by GC
+                CLS     classes 
+                OBJ     instances
+                ARR     arrays
+
+SITES           is a sorted list of allocation sites.  This identifies
+                the most heavily allocated object types, and the TRACE
+                at which those allocations occurred.
+
+CPU SAMPLES     is a statistical profile of program execution.  The VM
+                periodically samples all running threads, and assigns
+                a quantum to active TRACEs in those threads.  Entries
+                in this record are TRACEs ranked by the percentage of
+                total quanta they consumed; top-ranked TRACEs are
+                typically hot spots in the program.
+
+CPU TIME        is a profile of program execution obtained by measuring
+                the time spent in individual methods (excluding the time
+                spent in callees), as well as by counting the number of
+                times each method is called. Entries in this record are
+                TRACEs ranked by the percentage of total CPU time. The
+                "count" field indicates the number of times each TRACE 
+                is invoked.
+
+MONITOR TIME    is a profile of monitor contention obtained by measuring
+                the time spent by a thread waiting to enter a monitor.
+                Entries in this record are TRACEs ranked by the percentage
+                of total monitor contention time and a brief description
+                of the monitor.  The "count" field indicates the number of 
+                times the monitor was contended at that TRACE.
+
+MONITOR DUMP    is a complete snapshot of all the monitors and threads in 
+                the System.
+
+HEAP DUMP, SITES, CPU SAMPLES|TIME and MONITOR DUMP|TIME records are generated 
+at program exit.  They can also be obtained during program execution by typing 
+Ctrl-\ (on Solaris) or by typing Ctrl-Break (on Win32).
+
+--------
+
+THREAD START (obj=5000014f, id = 200001, name="main", group="main")
+THREAD END (id = 200001)
+THREAD START (obj=500002f8, id = 200005, name="DestroyJavaVM", group="main")
+THREAD START (obj=500002fc, id = 200006, name="Thread-0", group="main")
+THREAD END (id = 200006)
+THREAD END (id = 200005)
+THREAD END (id = 200002)
+TRACE 300353:
+	hangman.Partition.makePartition(Partition.java:61)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300355:
+	java.util.HashMap.getEntry(HashMap.java:347)
+	java.util.HashMap.containsKey(HashMap.java:335)
+	hangman.Partition.makePartition(Partition.java:64)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+TRACE 300312:
+	java.util.regex.Matcher.toMatchResult(Matcher.java:232)
+	java.util.Scanner.match(Scanner.java:1270)
+	java.util.Scanner.hasNextLine(Scanner.java:1478)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:66)
+TRACE 300298:
+	java.util.Arrays.copyOfRange(Arrays.java:3209)
+	java.lang.String.<init>(String.java:215)
+	java.nio.HeapCharBuffer.toString(HeapCharBuffer.java:542)
+	java.nio.CharBuffer.toString(CharBuffer.java:1157)
+TRACE 300034:
+	java.util.zip.ZipFile.open(ZipFile.java:Unknown line)
+	java.util.zip.ZipFile.<init>(ZipFile.java:127)
+	java.util.jar.JarFile.<init>(JarFile.java:135)
+	java.util.jar.JarFile.<init>(JarFile.java:72)
+TRACE 300367:
+	java.util.HashMap.get(HashMap.java:303)
+	hangman.Partition.makePartition(Partition.java:65)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+TRACE 300356:
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:147)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:36)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300351:
+	java.util.LinkedList.addBefore(LinkedList.java:778)
+	java.util.LinkedList.add(LinkedList.java:198)
+	hangman.Partition.makePartition(Partition.java:65)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+TRACE 300311:
+	java.util.regex.Pattern$Curly.match0(Pattern.java:3770)
+	java.util.regex.Pattern$Curly.match(Pattern.java:3744)
+	java.util.regex.Pattern$Branch.match(Pattern.java:4114)
+	java.util.regex.Pattern$Start.match(Pattern.java:3055)
+TRACE 300368:
+	hangman.Partition.makePartition(Partition.java:63)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300366:
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:181)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:40)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300317:
+	java.util.regex.Pattern$BitClass.isSatisfiedBy(Pattern.java:2927)
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:4763)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:3345)
+	java.util.regex.Pattern$Branch.match(Pattern.java:4114)
+TRACE 300352:
+	java.util.HashMap.put(HashMap.java:370)
+	hangman.Partition.makePartition(Partition.java:69)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+TRACE 300307:
+	java.util.regex.Matcher.<init>(Matcher.java:207)
+	java.util.regex.Matcher.toMatchResult(Matcher.java:232)
+	java.util.Scanner.match(Scanner.java:1270)
+	java.util.Scanner.hasNextLine(Scanner.java:1478)
+TRACE 300320:
+	java.util.regex.Pattern$Curly.match0(Pattern.java:3760)
+	java.util.regex.Pattern$Curly.match(Pattern.java:3744)
+	java.util.regex.Pattern$Branch.match(Pattern.java:4114)
+	java.util.regex.Pattern$Start.match(Pattern.java:3055)
+TRACE 300373:
+	java.util.HashMap.getEntry(HashMap.java:347)
+	java.util.HashMap.containsKey(HashMap.java:335)
+	java.util.HashSet.contains(HashSet.java:184)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:151)
+TRACE 300318:
+	java.lang.System.arraycopy(System.java:Unknown line)
+	java.nio.HeapCharBuffer.compact(HeapCharBuffer.java:204)
+	java.util.Scanner.makeSpace(Scanner.java:808)
+	java.util.Scanner.readInput(Scanner.java:771)
+TRACE 300321:
+	java.lang.String.toUpperCase(String.java:2590)
+	java.lang.String.toUpperCase(String.java:2659)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:73)
+	hangman.AbstractScoring.score(AbstractScoring.java:15)
+TRACE 300302:
+	java.util.Scanner.findPatternInBuffer(Scanner.java:977)
+	java.util.Scanner.findWithinHorizon(Scanner.java:1653)
+	java.util.Scanner.hasNextLine(Scanner.java:1476)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:66)
+TRACE 300304:
+	java.lang.String.toCharArray(String.java:2725)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:73)
+	hangman.AbstractScoring.score(AbstractScoring.java:15)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:22)
+TRACE 300192:
+	java.math.BigInteger.mulAdd(BigInteger.java:1902)
+	java.math.BigInteger.montReduce(BigInteger.java:1852)
+	java.math.BigInteger.oddModPow(BigInteger.java:1822)
+	java.math.BigInteger.modPow(BigInteger.java:1571)
+TRACE 300193:
+	java.math.BigInteger.multiplyToLen(BigInteger.java:1194)
+	java.math.BigInteger.oddModPow(BigInteger.java:1808)
+	java.math.BigInteger.modPow(BigInteger.java:1571)
+	sun.security.provider.DSA.generateV(DSA.java:374)
+TRACE 300337:
+	java.util.HashMap.getEntry(HashMap.java:344)
+	java.util.HashMap.containsKey(HashMap.java:335)
+	java.util.HashSet.contains(HashSet.java:184)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:151)
+TRACE 300338:
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:149)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:36)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300258:
+	java.util.ServiceLoader.reload(ServiceLoader.java:194)
+	java.util.ServiceLoader.<init>(ServiceLoader.java:201)
+	java.util.ServiceLoader.load(ServiceLoader.java:449)
+	java.util.ServiceLoader.loadInstalled(ServiceLoader.java:509)
+TRACE 300340:
+	java.lang.String.<init>(String.java:175)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:182)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:40)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+TRACE 300214:
+	java.io.FilePermission$1.run(FilePermission.java:186)
+	java.io.FilePermission$1.run(FilePermission.java:183)
+	java.security.AccessController.doPrivileged(AccessController.java:Unknown line)
+	java.io.FilePermission.init(FilePermission.java:183)
+TRACE 300194:
+	java.math.BigInteger.squareToLen(BigInteger.java:1274)
+	java.math.BigInteger.oddModPow(BigInteger.java:1821)
+	java.math.BigInteger.modPow(BigInteger.java:1571)
+	sun.security.provider.DSA.generateV(DSA.java:374)
+TRACE 300343:
+	java.util.TreeMap.navigableKeySet(TreeMap.java:791)
+	java.util.TreeSet.iterator(TreeSet.java:164)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:54)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+TRACE 300195:
+	java.math.BigInteger.montReduce(BigInteger.java:1846)
+	java.math.BigInteger.oddModPow(BigInteger.java:1822)
+	java.math.BigInteger.modPow(BigInteger.java:1571)
+	sun.security.provider.DSA.generateV(DSA.java:375)
+TRACE 300345:
+	hangman.Partition.makePartition(Partition.java:61)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300346:
+	hangman.Partition.makePartition(Partition.java:62)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300061:
+	java.util.Properties$LineReader.readLine(Properties.java:417)
+	java.util.Properties.load0(Properties.java:337)
+	java.util.Properties.load(Properties.java:325)
+	java.security.Security.initialize(Security.java:70)
+TRACE 300111:
+	sun.security.x509.CertificateIssuerName.<init>(CertificateIssuerName.java:65)
+	sun.security.x509.X509CertInfo.parse(X509CertInfo.java:668)
+	sun.security.x509.X509CertInfo.<init>(X509CertInfo.java:152)
+	sun.security.x509.X509CertImpl.parse(X509CertImpl.java:1729)
+TRACE 300349:
+	hangman.Partition.makePartition(Partition.java:61)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300350:
+	hangman.Partition.makePartition(Partition.java:61)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300354:
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:148)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:36)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300168:
+	sun.nio.cs.UTF_8$Decoder.decodeArrayLoop(UTF_8.java:181)
+	sun.nio.cs.UTF_8$Decoder.decodeLoop(UTF_8.java:305)
+	java.nio.charset.CharsetDecoder.decode(CharsetDecoder.java:544)
+	java.lang.StringCoding$StringDecoder.decode(StringCoding.java:140)
+TRACE 300309:
+	java.util.Scanner.findPatternInBuffer(Scanner.java:979)
+	java.util.Scanner.findWithinHorizon(Scanner.java:1653)
+	java.util.Scanner.hasNextLine(Scanner.java:1476)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:66)
+TRACE 300201:
+	sun.misc.CharacterDecoder.decodeBuffer(CharacterDecoder.java:138)
+	sun.misc.CharacterDecoder.decodeBuffer(CharacterDecoder.java:177)
+	sun.security.util.SignatureFileVerifier.verifyManifestHash(SignatureFileVerifier.java:279)
+	sun.security.util.SignatureFileVerifier.processImpl(SignatureFileVerifier.java:217)
+TRACE 300223:
+	java.util.regex.Pattern.charPropertyNodeFor(Pattern.java:2435)
+	java.util.regex.Pattern.family(Pattern.java:2412)
+	java.util.regex.Pattern.sequence(Pattern.java:1831)
+	java.util.regex.Pattern.expr(Pattern.java:1752)
+TRACE 300134:
+	sun.security.provider.DSAKeyFactory.engineGeneratePublic(DSAKeyFactory.java:96)
+	java.security.KeyFactory.generatePublic(KeyFactory.java:304)
+	sun.security.x509.X509Key.buildX509Key(X509Key.java:206)
+	sun.security.x509.X509Key.parse(X509Key.java:153)
+TRACE 300070:
+	sun.security.pkcs.ContentInfo.<clinit>(ContentInfo.java:50)
+	sun.security.pkcs.PKCS7.parse(PKCS7.java:136)
+	sun.security.pkcs.PKCS7.parse(PKCS7.java:110)
+	sun.security.pkcs.PKCS7.<init>(PKCS7.java:92)
+TRACE 300035:
+	sun.misc.URLClassPath$JarLoader.parseExtensionsDependencies(URLClassPath.java:922)
+	sun.misc.URLClassPath$JarLoader.getClassPath(URLClassPath.java:902)
+	sun.misc.URLClassPath.getLoader(URLClassPath.java:302)
+	sun.misc.URLClassPath.getResource(URLClassPath.java:168)
+TRACE 300205:
+	java.lang.String.indexOf(String.java:1769)
+	java.lang.String.indexOf(String.java:1733)
+	java.lang.String.indexOf(String.java:1715)
+	java.security.Provider.getTypeAndAlgorithm(Provider.java:558)
+TRACE 300369:
+	java.util.AbstractList.<init>(AbstractList.java:589)
+	java.util.AbstractSequentialList.<init>(AbstractSequentialList.java:57)
+	java.util.LinkedList.<init>(LinkedList.java:84)
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:180)
+TRACE 300370:
+	java.util.TreeMap.size(TreeMap.java:192)
+	java.util.TreeSet.size(TreeSet.java:190)
+	hangman.EntropyGuessingStrategy.uniqueLetters(EntropyGuessingStrategy.java:110)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:45)
+TRACE 300371:
+	hangman.Partition.makePartition(Partition.java:68)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300372:
+	java.util.TreeMap.put(TreeMap.java:552)
+	java.util.TreeSet.add(TreeSet.java:238)
+	hangman.EntropyGuessingStrategy.uniqueLetters(EntropyGuessingStrategy.java:107)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:45)
+TRACE 300374:
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:55)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:22)
+TRACE 300375:
+	hangman.EntropyGuessingStrategy.filter(EntropyGuessingStrategy.java:182)
+	hangman.EntropyGuessingStrategy.nextGuess(EntropyGuessingStrategy.java:40)
+	hangman.HangmanGame.score(HangmanGame.java:245)
+	hangman.AbstractScoring.score(AbstractScoring.java:28)
+TRACE 300013:
+	java.util.jar.Manifest.read(Manifest.java:178)
+	java.util.jar.Manifest.<init>(Manifest.java:52)
+	java.util.jar.JarFile.getManifestFromReference(JarFile.java:162)
+	java.util.jar.JarFile.getManifest(JarFile.java:148)
+TRACE 300037:
+	java.lang.String.hashCode(String.java:1482)
+	java.io.UnixFileSystem.hashCode(UnixFileSystem.java:295)
+	java.io.File.hashCode(File.java:1891)
+	java.util.HashMap.get(HashMap.java:300)
+TRACE 300299:
+	java.nio.HeapCharBuffer.subSequence(HeapCharBuffer.java:557)
+	java.util.regex.Matcher.getSubSequence(Matcher.java:1151)
+	java.util.regex.Matcher.group(Matcher.java:473)
+	java.util.regex.Matcher.group(Matcher.java:428)
+TRACE 300300:
+	java.util.regex.Pattern$Dot.isSatisfiedBy(Pattern.java:3662)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:3345)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:3770)
+	java.util.regex.Pattern$Curly.match(Pattern.java:3744)
+TRACE 300301:
+	java.lang.System.arraycopy(System.java:Unknown line)
+	java.lang.String.getChars(String.java:854)
+	java.lang.String.toCharArray(String.java:2726)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:73)
+TRACE 300303:
+	java.util.Scanner.nextLine(Scanner.java:1511)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:67)
+	hangman.AbstractScoring.score(AbstractScoring.java:15)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:22)
+TRACE 300305:
+	java.util.regex.Pattern$Slice.match(Pattern.java:3479)
+	java.util.regex.Pattern$Branch.match(Pattern.java:4114)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:4168)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:3782)
+TRACE 300188:
+	sun.security.provider.DSAPublicKey.getParams(DSAPublicKey.java:104)
+	sun.security.provider.DSA.engineInitVerify(DSA.java:228)
+	java.security.Signature$Delegate.init(Signature.java:1070)
+	java.security.Signature$Delegate.chooseProvider(Signature.java:1033)
+TRACE 300308:
+	java.util.regex.Pattern$Slice.match(Pattern.java:3479)
+	java.util.regex.Pattern$Branch.match(Pattern.java:4114)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:4168)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:3782)
+TRACE 300094:
+	java.security.Provider.parseLegacyPut(Provider.java:611)
+	java.security.Provider.ensureLegacyParsed(Provider.java:537)
+	java.security.Provider.getService(Provider.java:676)
+	sun.security.jca.ProviderList.getService(ProviderList.java:314)
+TRACE 300310:
+	java.util.regex.Matcher.region(Matcher.java:898)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:986)
+	java.util.Scanner.findWithinHorizon(Scanner.java:1653)
+	java.util.Scanner.hasNextLine(Scanner.java:1476)
+TRACE 300313:
+	java.util.regex.Matcher.group(Matcher.java:428)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:1006)
+	java.util.Scanner.findWithinHorizon(Scanner.java:1653)
+	java.util.Scanner.hasNextLine(Scanner.java:1476)
+TRACE 300314:
+	java.util.regex.Pattern$BitClass.isSatisfiedBy(Pattern.java:2927)
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:4763)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:3345)
+	java.util.regex.Pattern$Branch.match(Pattern.java:4114)
+TRACE 300315:
+	java.util.regex.Matcher.usePattern(Matcher.java:262)
+	java.util.Scanner.findPatternInBuffer(Scanner.java:977)
+	java.util.Scanner.findWithinHorizon(Scanner.java:1653)
+	java.util.Scanner.hasNextLine(Scanner.java:1476)
+TRACE 300316:
+	java.util.regex.Pattern$6.isSatisfiedBy(Pattern.java:4763)
+	java.util.regex.Pattern$CharProperty.match(Pattern.java:3345)
+	java.util.regex.Pattern$Branch.match(Pattern.java:4114)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:4168)
+TRACE 300319:
+	java.io.Reader.read(Reader.java:82)
+	java.util.Scanner.readInput(Scanner.java:780)
+	java.util.Scanner.findWithinHorizon(Scanner.java:1659)
+	java.util.Scanner.hasNextLine(Scanner.java:1476)
+TRACE 300322:
+	java.util.regex.Pattern$Branch.match(Pattern.java:4114)
+	java.util.regex.Pattern$GroupHead.match(Pattern.java:4168)
+	java.util.regex.Pattern$Curly.match0(Pattern.java:3782)
+	java.util.regex.Pattern$Curly.match(Pattern.java:3744)
+TRACE 300323:
+	java.lang.String.toUpperCase(String.java:2659)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:73)
+	hangman.AbstractScoring.score(AbstractScoring.java:15)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:22)
+TRACE 300324:
+	java.lang.System.arraycopy(System.java:Unknown line)
+	java.nio.HeapCharBuffer.put(HeapCharBuffer.java:166)
+	java.io.Reader.read(Reader.java:85)
+	java.util.Scanner.readInput(Scanner.java:780)
+TRACE 300325:
+	java.lang.String.toUpperCase(String.java:2576)
+	java.lang.String.toUpperCase(String.java:2659)
+	hangman.FileReader.readLinesAsArrays(FileReader.java:73)
+	hangman.AbstractScoring.score(AbstractScoring.java:15)
+TRACE 300326:
+	java.util.zip.ZipFile.getEntry(ZipFile.java:Unknown line)
+	java.util.zip.ZipFile.getEntry(ZipFile.java:162)
+	java.util.jar.JarFile.getEntry(JarFile.java:208)
+	java.util.jar.JarFile.getJarEntry(JarFile.java:191)
+TRACE 300327:
+	java.lang.Integer.valueOf(Integer.java:622)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:124)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:18)
+	hangman.AbstractScoring.score(AbstractScoring.java:19)
+TRACE 300328:
+	java.util.HashMap.getEntry(HashMap.java:344)
+	java.util.HashMap.containsKey(HashMap.java:335)
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:125)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:18)
+TRACE 300329:
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:126)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:18)
+	hangman.AbstractScoring.score(AbstractScoring.java:19)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:22)
+TRACE 300330:
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:123)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:18)
+	hangman.AbstractScoring.score(AbstractScoring.java:19)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:22)
+TRACE 300331:
+	hangman.EntropyGuessingStrategy.partitionByLength(EntropyGuessingStrategy.java:123)
+	hangman.EntropyGuessingStrategy.<init>(EntropyGuessingStrategy.java:18)
+	hangman.AbstractScoring.score(AbstractScoring.java:19)
+	hangman.FixedWordsScoring.score(FixedWordsScoring.java:22)
+TRACE 300059:
+	java.io.FileInputStream.open(FileInputStream.java:Unknown line)
+	java.io.FileInputStream.<init>(FileInputStream.java:120)
+	java.security.Security.initialize(Security.java:68)
+	java.security.Security.access$000(Security.java:30)
+TRACE 300151:
+	java.nio.ByteBuffer.<init>(ByteBuffer.java:1359)
+	java.nio.HeapByteBuffer.<init>(HeapByteBuffer.java:52)
+	java.nio.ByteBuffer.wrap(ByteBuffer.java:350)
+	java.lang.StringCoding$StringDecoder.decode(StringCoding.java:137)
+TRACE 300054:
+	java.lang.Double.toString(Double.java:179)
+	java.lang.String.valueOf(String.java:2973)
+	java.security.Provider.putId(Provider.java:416)
+	java.security.Provider.<init>(Provider.java:120)
+CPU SAMPLES BEGIN (total = 257) Thu Sep  8 15:50:17 2011
+rank   self  accum   count trace method
+   1 33.07% 33.07%      85 300353 hangman.Partition.makePartition
+   2  8.56% 41.63%      22 300355 java.util.HashMap.getEntry
+   3  5.45% 47.08%      14 300312 java.util.regex.Matcher.toMatchResult
+   4  4.28% 51.36%      11 300298 java.util.Arrays.copyOfRange
+   5  3.89% 55.25%      10 300034 java.util.zip.ZipFile.open
+   6  3.50% 58.75%       9 300367 java.util.HashMap.get
+   7  3.50% 62.26%       9 300356 hangman.EntropyGuessingStrategy.filter
+   8  1.95% 64.20%       5 300351 java.util.LinkedList.addBefore
+   9  1.56% 65.76%       4 300311 java.util.regex.Pattern$Curly.match0
+  10  1.56% 67.32%       4 300368 hangman.Partition.makePartition
+  11  1.17% 68.48%       3 300366 hangman.EntropyGuessingStrategy.filter
+  12  1.17% 69.65%       3 300317 java.util.regex.Pattern$BitClass.isSatisfiedBy
+  13  1.17% 70.82%       3 300352 java.util.HashMap.put
+  14  1.17% 71.98%       3 300307 java.util.regex.Matcher.<init>
+  15  0.78% 72.76%       2 300320 java.util.regex.Pattern$Curly.match0
+  16  0.78% 73.54%       2 300373 java.util.HashMap.getEntry
+  17  0.78% 74.32%       2 300318 java.lang.System.arraycopy
+  18  0.78% 75.10%       2 300321 java.lang.String.toUpperCase
+  19  0.78% 75.88%       2 300302 java.util.Scanner.findPatternInBuffer
+  20  0.78% 76.65%       2 300304 java.lang.String.toCharArray
+  21  0.39% 77.04%       1 300192 java.math.BigInteger.mulAdd
+  22  0.39% 77.43%       1 300193 java.math.BigInteger.multiplyToLen
+  23  0.39% 77.82%       1 300337 java.util.HashMap.getEntry
+  24  0.39% 78.21%       1 300338 hangman.EntropyGuessingStrategy.filter
+  25  0.39% 78.60%       1 300258 java.util.ServiceLoader.reload
+  26  0.39% 78.99%       1 300340 java.lang.String.<init>
+  27  0.39% 79.38%       1 300214 java.io.FilePermission$1.run
+  28  0.39% 79.77%       1 300194 java.math.BigInteger.squareToLen
+  29  0.39% 80.16%       1 300343 java.util.TreeMap.navigableKeySet
+  30  0.39% 80.54%       1 300195 java.math.BigInteger.montReduce
+  31  0.39% 80.93%       1 300345 hangman.Partition.makePartition
+  32  0.39% 81.32%       1 300346 hangman.Partition.makePartition
+  33  0.39% 81.71%       1 300061 java.util.Properties$LineReader.readLine
+  34  0.39% 82.10%       1 300111 sun.security.x509.CertificateIssuerName.<init>
+  35  0.39% 82.49%       1 300349 hangman.Partition.makePartition
+  36  0.39% 82.88%       1 300350 hangman.Partition.makePartition
+  37  0.39% 83.27%       1 300354 hangman.EntropyGuessingStrategy.filter
+  38  0.39% 83.66%       1 300168 sun.nio.cs.UTF_8$Decoder.decodeArrayLoop
+  39  0.39% 84.05%       1 300309 java.util.Scanner.findPatternInBuffer
+  40  0.39% 84.44%       1 300201 sun.misc.CharacterDecoder.decodeBuffer
+  41  0.39% 84.82%       1 300223 java.util.regex.Pattern.charPropertyNodeFor
+  42  0.39% 85.21%       1 300134 sun.security.provider.DSAKeyFactory.engineGeneratePublic
+  43  0.39% 85.60%       1 300070 sun.security.pkcs.ContentInfo.<clinit>
+  44  0.39% 85.99%       1 300035 sun.misc.URLClassPath$JarLoader.parseExtensionsDependencies
+  45  0.39% 86.38%       1 300205 java.lang.String.indexOf
+  46  0.39% 86.77%       1 300369 java.util.AbstractList.<init>
+  47  0.39% 87.16%       1 300370 java.util.TreeMap.size
+  48  0.39% 87.55%       1 300371 hangman.Partition.makePartition
+  49  0.39% 87.94%       1 300372 java.util.TreeMap.put
+  50  0.39% 88.33%       1 300374 hangman.EntropyGuessingStrategy.nextGuess
+  51  0.39% 88.72%       1 300375 hangman.EntropyGuessingStrategy.filter
+  52  0.39% 89.11%       1 300013 java.util.jar.Manifest.read
+  53  0.39% 89.49%       1 300037 java.lang.String.hashCode
+  54  0.39% 89.88%       1 300299 java.nio.HeapCharBuffer.subSequence
+  55  0.39% 90.27%       1 300300 java.util.regex.Pattern$Dot.isSatisfiedBy
+  56  0.39% 90.66%       1 300301 java.lang.System.arraycopy
+  57  0.39% 91.05%       1 300303 java.util.Scanner.nextLine
+  58  0.39% 91.44%       1 300305 java.util.regex.Pattern$Slice.match
+  59  0.39% 91.83%       1 300188 sun.security.provider.DSAPublicKey.getParams
+  60  0.39% 92.22%       1 300308 java.util.regex.Pattern$Slice.match
+  61  0.39% 92.61%       1 300094 java.security.Provider.parseLegacyPut
+  62  0.39% 93.00%       1 300310 java.util.regex.Matcher.region
+  63  0.39% 93.39%       1 300313 java.util.regex.Matcher.group
+  64  0.39% 93.77%       1 300314 java.util.regex.Pattern$BitClass.isSatisfiedBy
+  65  0.39% 94.16%       1 300315 java.util.regex.Matcher.usePattern
+  66  0.39% 94.55%       1 300316 java.util.regex.Pattern$6.isSatisfiedBy
+  67  0.39% 94.94%       1 300319 java.io.Reader.read
+  68  0.39% 95.33%       1 300322 java.util.regex.Pattern$Branch.match
+  69  0.39% 95.72%       1 300323 java.lang.String.toUpperCase
+  70  0.39% 96.11%       1 300324 java.lang.System.arraycopy
+  71  0.39% 96.50%       1 300325 java.lang.String.toUpperCase
+  72  0.39% 96.89%       1 300326 java.util.zip.ZipFile.getEntry
+  73  0.39% 97.28%       1 300327 java.lang.Integer.valueOf
+  74  0.39% 97.67%       1 300328 java.util.HashMap.getEntry
+  75  0.39% 98.05%       1 300329 hangman.EntropyGuessingStrategy.partitionByLength
+  76  0.39% 98.44%       1 300330 hangman.EntropyGuessingStrategy.partitionByLength
+  77  0.39% 98.83%       1 300331 hangman.EntropyGuessingStrategy.partitionByLength
+  78  0.39% 99.22%       1 300059 java.io.FileInputStream.open
+  79  0.39% 99.61%       1 300151 java.nio.ByteBuffer.<init>
+  80  0.39% 100.00%       1 300054 java.lang.Double.toString
+CPU SAMPLES END
