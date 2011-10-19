@@ -46,13 +46,13 @@ public class Combinations {
 	
 	/**
 	 * This function generates the indices that specify a combination.
-     * The combinations are generated lexicographically.
-     * Algorithm L (Lexicographic combinations) on page 4. 
-     * of Donald Knuth's The Art of Computer Programming, Pre-fascicle 3A
-     * freely available at http://www-cs-faculty.stanford.edu/~knuth/fasc3a.ps.gz <br>
-     * I haven't bought the book but this information is also in
-     * Knuth's The Art of Computer Programming, Volume 4A: Combinatorial Algorithms, Part 1
-     * Section 7.2.1.3 Generating All Combinations. 
+	 * The combinations are generated lexicographically.
+	 * Algorithm L (Lexicographic combinations) on page 4. 
+	 * of Donald Knuth's The Art of Computer Programming, Pre-fascicle 3A
+	 * freely available at http://www-cs-faculty.stanford.edu/~knuth/fasc3a.ps.gz <br>
+	 * I haven't bought the book but this information is also in
+	 * Knuth's The Art of Computer Programming, Volume 4A: Combinatorial Algorithms, Part 1
+	 * Section 7.2.1.3 Generating All Combinations. 
 	 * @param indicesIn the current set of indices for a combination
 	 * @param n the size of the set from which we're making combinations
 	 * @return the next set of indices for a combination or null if there is none.
