@@ -2,7 +2,7 @@ This java program performs tests on strategies
 for playing the pencil and paper game hangman.
 
 Ray Pereda
-raypereda@gmail.com
+raypereda_at_gmail
 
 Running the program
 ===================
