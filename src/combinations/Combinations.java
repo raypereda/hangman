@@ -57,6 +57,7 @@ public class Combinations {
 	 * @param n the size of the set from which we're making combinations
 	 * @return the next set of indices for a combination or null if there is none.
 	 */
+	
 	public static int[] nextCombo(int[] indicesIn, int n) {
 		int[] indices = (int[])indicesIn.clone();
 		
