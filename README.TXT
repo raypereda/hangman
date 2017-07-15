@@ -1,6 +1,18 @@
 This java program performs tests on strategies
 for playing the pencil and paper game hangman.
 
+Given a maximum number of wrong guess and maximum number of moves looked-ahead,
+this program makes theoretically optimal next guess. I wrote this program as part
+of a challenge just to get an interview at factual.com. The interviewer told me that
+I was in the top 2 or 3 in terms of speed and winning games. I was never given an
+example where I did worse. The company did not provide any benchmark comparing
+this program to theirs. Oh well. Lesson learned. Probably a bad idea to invest
+time and energy in that interview.
+
+On the happy side, I taught myself how to apply some cool ideas from Shannon's entropy,
+and information theory. Hopefully you can get some ideas on how to apply this theory
+to your application. 
+
 Ray Pereda
 raypereda_at_gmail
 
